@@ -1,0 +1,15 @@
+version: 2
+
+sources:
+  - name: src_brazil_ecommerce
+    database: analytics
+    schema: brazil_ecommerce
+    tables:
+      - name: customers
+      - name: location
+      - name: order_items
+      - name: orders
+      - name: payments
+      - name: product_cat_translate
+      - name: products
+      - name: sellers
