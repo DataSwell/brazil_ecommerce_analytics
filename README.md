@@ -32,10 +32,10 @@ Using the ELT approach the transformation of the data starts after loading the d
 
 ### Tests
 - **Generic Tests**:
-In dbt can generic tests added in the YAML file of the model. The standard package provides the generic tests: unique, not_null, accepted_values and relationships. The tests unique and not_null for example can be used to test primary keys.
+In dbt are generic tests added in the YAML file of the model. The standard package provides the generic tests: unique, not_null, accepted_values and relationships. The tests unique and not_null for example can be used to test primary keys.
 
 
-- **Singular Tests**:
+- Singular Tests:
 These types of tests are user defined tests for specific attributes that needs to be validatet. For example the total amount of an order can not be negative. These type of tests are not specified in the YML file, they are saved as a SQL file in the tests order of the dbt-project.
 
 
