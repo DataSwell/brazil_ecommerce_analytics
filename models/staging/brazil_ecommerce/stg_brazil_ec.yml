@@ -1,0 +1,69 @@
+version: 2
+
+models:
+  - name: stg_bec_customers
+    columns:
+      - name: customer_id
+        tests:
+          - unique
+          - not_null
+      
+  - name: stg_bec_order_items
+    columns:
+      - name: order_id
+        tests:
+          - not_null
+          - relationships:
+              to: ref('stg_bec_orders')
+              field: order_id
+      - name: product_id
+        tests:
+          - not_null
+          - relationships:
+              to: ref('stg_bec_products')
+              field: product_id
+      - name: seller_id
+        tests:
+          - not_null
+          - relationships:
+              to: ref('stg_bec_sellers')
+              field: seller_id
+
+  - name: stg_bec_orders
+    columns:
+      - name: order_id
+        tests:
+        - unique
+        - not_null
+      - name: customer_id
+        tests:
+          - not_null
+          - relationships:
+              to: ref('stg_bec_customers')
+              field: customer_id
+          
+  - name: stg_bec_payments
+    columns:
+      - name: payment_id
+        tests:
+        - unique
+        - not_null
+      - name: order_id
+        tests:
+          - relationships:
+              to: ref('stg_bec_orders')
+              field: order_id      
+
+  - name: stg_products
+    columns:
+      - name: product_id
+        tests:
+        - unique
+        - not_null
+
+  - name: stg_bec_sellers
+    columns:
+      - name: seller_id
+        tests:
+        - unique
+        - not_null
