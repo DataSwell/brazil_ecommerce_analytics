@@ -8,6 +8,8 @@ source as (
 bec_payments as (
 
     select 
+        -- concat for creating surrogate key
+        concat(order_id, cast(payment_sequential as varchar(2))) as payment_id,
         order_id,
         payment_sequential,
         payment_type,
