@@ -35,5 +35,7 @@ models:
   redshift_analytics:
     marts:
       +materialized: table
+    intermediate:
+      +materialized: view
     staging:
       +materialized: view
