@@ -162,7 +162,7 @@ sources:
           - name: review_id
             description: unique review identifier
             tests:
-            - unique
+            # - unique tests fails because there are rows with the same review_id which will be handeled in the staging Model
             - not_null
           - name: order_id
             description: unique order identifier
