@@ -11,8 +11,8 @@ bec_orders as (
         order_id,
         customer_id,
         order_status,
-        order_purchase_timestamp as order_purchase,
-        order_approved_at as order_approved,
+        order_purchase_timestamp as order_date,
+        order_approved_at as payment_date,
         order_delivered_carrier_date as carrier_delivery_date,
         order_delivered_customer_date as customer_delivery_date,
         order_estimated_delivery_date as estimated_delivery_date
