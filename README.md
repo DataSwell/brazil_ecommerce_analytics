@@ -19,24 +19,24 @@ Using the ELT approach the transformation of the data starts after loading the d
 ### Staging
 
 ### Marts
-- Dimensions (dim):
+- **Dimensions (dim):**
 	- customer
 	- location
 	- products
 	- sellers
 	- calendar
 
-- Facts (fct): 
+- **Facts (fct):** 
 	- orders
 	- payments
 
 ### Tests
-- **Generic Tests**:
-In dbt are generic tests added in the YAML file of the model. The standard package provides the generic tests: unique, not_null, accepted_values and relationships. The tests unique and not_null for example can be used to test primary keys.
+- **Generic Tests**
+are written in YAML and return the number of records that do not meet your assertions. These are run on specific columns in a model. The standard package provides the generic tests: unique, not_null, accepted_values and relationships. The tests unique and not_null for example can be used to test primary keys.
 
 
-- Singular Tests:
-These types of tests are user defined tests for specific attributes that needs to be validatet. For example the total amount of an order can not be negative. These type of tests are not specified in the YML file, they are saved as a SQL file in the tests order of the dbt-project.
+- **Singular Tests**
+are specific queries that you run against your models. These are run on the entire model. These types of tests are user defined tests for specific attributes that needs to be validatet. For example the total amount of an order can not be negative. These type of tests are not specified in the YML file, they are saved as a SQL file in the tests order of the dbt-project.
 
 
 ### Documentation
@@ -44,9 +44,9 @@ These types of tests are user defined tests for specific attributes that needs t
 ## Analytics & Visualization 
 
 ### Metrics/KPI
-- customer:
+- **customer:**
 	- Where live the customers with the most amount and value of orders?
-- products:
+- **products:**
 	- Which products / categories are bought the most?
 	- Which product category has the largest share of sales?
 	- Are products bought more in some regions than in others?
@@ -55,15 +55,15 @@ These types of tests are user defined tests for specific attributes that needs t
 	- Are products with longer description ordered more often than others from the same category?
 	- Are products with more pictures ordered more often than others from the same category?
 	- What product category has the most & best reviews?
-- sellers:
+- **sellers:**
 	- Where are the top-selling companies located
 	- Which products do the top-selling companies sell?
-- delivery:
+- **delivery:**
 	- What is the average deliverytime per seller/product category?
 	- How many percentage of deliverys are in time?
-- payment:
+- **payment:**
 	- What type of payment is used most?
-- calendar:
+- **calendar:**
 	- In which weeks are most products bought? 
 	- Are there patterns for date and produkt category?
 	- Are there patterns for during the week / weekend?
