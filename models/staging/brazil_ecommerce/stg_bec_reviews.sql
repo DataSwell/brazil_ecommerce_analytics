@@ -1,18 +1,3 @@
-
-/* getting the reviews which are not unique. For those multiple reviews we will calculate the 
-
-select *
-from brazil_ecommerce.reviews
-where review_id IN (
-    select review_id from (
-    select *,
-    row_number() over(partition by review_id) as rn
-    from brazil_ecommerce.reviews) rev
-    where rev.rn >1)
-order by review_id;
-
-*/
-
 with source as (
 
     select * from {{ source('src_brazil_ecommerce', 'reviews')}}
@@ -21,12 +6,15 @@ with source as (
 bec_reviews as (
 
     select
-        distinct review_id,
-        order_id,
+        -- for some orders there a duplicated reviews which we want don't want to include
+        distinct order_id,
+        review_id,
         review_score,
         review_comment_title as review_title,
         review_comment_message as review_message,
-        review_creation_date as review_date,
+        cast(review_creation_date as date) as review_date,
+        review_creation_date as review_timestamp,
+        cast(review_answer_timestamp as date) as review_answer_date,
         review_answer_timestamp
 
     from {{ source('src_brazil_ecommerce', 'reviews')}}
