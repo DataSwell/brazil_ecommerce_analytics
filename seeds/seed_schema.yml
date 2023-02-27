@@ -1,0 +1,10 @@
+version: 2
+
+seeds:
+  - name: calendar
+    description: CSV file with all important date formats for the time dimension
+    columns:
+      - name: DateNum
+        tests:
+          - unique
+          - not_null
