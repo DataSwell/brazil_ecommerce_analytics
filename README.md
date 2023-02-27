@@ -44,30 +44,33 @@ are specific queries that you run against your models. These are run on the enti
 ## Analytics & Visualization 
 
 ### Metrics/KPI
-- **customer:**
-	- Where live the customers with the most amount and value of orders?
+
 - **products:**
-	- Which products / categories are bought the most?
-	- Which product category has the largest share of sales?
-	- Are products bought more in some regions than in others?
-	- Is there any correlation between product groups?
-	- Are products with more reviews ordered more often than others from the same category?
-	- Are products with longer description ordered more often than others from the same category?
+	- Which product categories are bought the most?
+	- What are Count, SUM, AVG, MIN, MAX per product group?
+	- In which months are most products bought? 
+	- Is there a difference during the years?
 	- Are products with more pictures ordered more often than others from the same category?
-	- What product category has the most & best reviews?
-- **sellers:**
+
+- **customer & sellers:**
+	- Where live the customers with the most value of orders?
+	- Are products bought more in some regions than in others?
 	- Where are the top-selling companies located
 	- Which products do the top-selling companies sell?
-- **delivery:**
-	- What is the average deliverytime per seller/product category?
-	- How many percentage of deliverys are in time?
-- **payment:**
+
+- **orders/payment/reviews:**
+	- How many orders were delivered in time?
+	- Are specific prduct categories delayed with a higher percentage?
 	- What type of payment is used most?
-- **calendar:**
-	- In which weeks are most products bought? 
-	- Are there patterns for date and produkt category?
-	- Are there patterns for during the week / weekend?
+	- At what days are the most orders placed?
 	- At what time during the day are orders made.
+	- What percentage of orders get canceled?
+	- What is the distribution of the the review rating?
+	- What percentage of orders get reviewed?
+	- What percentage of reviews gets answered?
+
+	- What is the average deliverytime per seller/product category? --> In time delivery must be joined from orders to order_items
+	
 
 
 
