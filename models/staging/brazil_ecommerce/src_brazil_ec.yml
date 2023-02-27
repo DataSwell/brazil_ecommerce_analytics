@@ -178,3 +178,13 @@ sources:
             description: Shows the date in which the satisfaction survey was sent to the customer.
           - name: review_answer_timestamp
             description: Shows satisfaction survey answer timestamp.
+      
+      - name: calendar
+        description: Time data in different formats for the time dimension.
+        columns:
+          - name: date_num
+            description: Primary key for the time data in the format yyyymmdd
+            tests:
+            - unique
+            - not_null
+            

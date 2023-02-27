@@ -14,6 +14,7 @@ customer_payments as (
 final as (
 
     select 
+        cu.customer_id,
         cu.customer_unique_id,
         cu.customer_city,
         cu.customer_state,

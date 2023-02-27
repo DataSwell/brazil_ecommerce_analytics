@@ -14,8 +14,12 @@ orders_and_order_payments_joined as (
 
     select
         o.*,
-        coalesce(op.order_total_amount, 0) as order_amount
-
+        coalesce(op.order_total_amount, 0) as order_amount,
+        case 
+            when o.customer_delivery_date <= o.estimated_delivery_date 
+            then 'In Time'
+            else 'Delayed'
+            end as delivered_on_time
     from orders o
 
     left join order_payments op on o.order_id = op.order_id
