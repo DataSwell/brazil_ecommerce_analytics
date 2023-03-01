@@ -35,8 +35,10 @@ final as (
         oi.price,
         oi.shipping_date,
         o.order_status,
+        s.seller_id,
         s.seller_city,
         s.seller_state,
+        c.customer_id,
         c.customer_city,
         c.customer_state
 

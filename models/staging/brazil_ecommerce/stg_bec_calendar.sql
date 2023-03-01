@@ -1,9 +1,12 @@
-with source as (
+{% set dash = '-' %}
+
+with calendar as (
 
     select 
         *,
-        extract(year from date) as year_num
-    from {{ source('src_brazil_ecommerce', 'calendar')}}
+        extract(year from date) as year_num,
+        concat(daynumofweek::varchar, dayname) as day_num_and_name
+    from {{ ref('calendar')}}
 )
 
-select * from source
+select * from calendar
