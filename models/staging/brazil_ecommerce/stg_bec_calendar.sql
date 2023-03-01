@@ -1,5 +1,3 @@
-{% set dash = '-' %}
-
 with calendar as (
 
     select 
