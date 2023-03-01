@@ -7,27 +7,28 @@ In this project we will use the brazil e-commerce dataset from Kaggle (https://w
 
 
 ## Load
-
+- Loaded the CSV files from the Kaggle project to a S3 bucket. Copied the data from the S3 bucket into Redshift.
+- Loaded the CSV file for the date dimension direct as a seed into the Github repository.
 
 ## Transform (dbt)
 Using the ELT approach the transformation of the data starts after loading the data into the data warehouse (Redshift).
 
 ### Datamodel
 
-### Sources
+### Sources & Seeds
 
 ### Staging
 
 ### Marts
 - **Dimensions (dim):**
 	- customer
-	- location
 	- products
 	- sellers
 	- calendar
 
 - **Facts (fct):** 
 	- orders
+    - order_items
 	- payments
 
 ### Tests
