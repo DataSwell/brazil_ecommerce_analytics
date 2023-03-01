@@ -53,13 +53,13 @@ are specific queries that you run against your models. These are run on the enti
 	- Is there a difference during the years?
 	- Are products with more pictures ordered more often than others from the same category?
 
-- **customer & sellers:**
+- **customer / sellers / reviews:**
 	- Where live the customers with the most value of orders?
 	- Are products bought more in some regions than in others?
 	- Where are the top-selling companies located
 	- Which products do the top-selling companies sell?
 
-- **orders/payment/reviews:**
+- **orders / payment:**
 	- How many orders were delivered in time?
 	- Are specific prduct categories delayed with a higher percentage?
 	- What type of payment is used most?
@@ -69,7 +69,6 @@ are specific queries that you run against your models. These are run on the enti
 	- What percentage of orders get reviewed?
 	- What percentage of reviews gets answered?
 
-	- What is the average deliverytime per seller/product category? --> In time delivery must be joined from orders to order_items
 	
 
 
