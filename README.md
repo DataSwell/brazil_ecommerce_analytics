@@ -64,7 +64,6 @@ are specific queries that you run against your models. These are run on the enti
 	- Are specific prduct categories delayed with a higher percentage?
 	- What type of payment is used most?
 	- At what days are the most orders placed?
-	- At what time during the day are orders made.
 	- What percentage of orders get canceled?
 	- What is the distribution of the the review rating?
 	- What percentage of orders get reviewed?
