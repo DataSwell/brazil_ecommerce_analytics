@@ -16,23 +16,37 @@ See more on our website: www.olist.com. After a customer purchases the product f
 
 The project follows the for the modern data stack more common ELT approch instead of ETL. All the data from kaggle will be loaded into a Redshift data warehouse. 
 Afterwards the data will be transformed and new models will be build with dbt. In dbt it is also possible to include tests and documentation for the project.
-**Attention:** For this project we use the free dbt-Cloud version, which allows us to only manage one project. 
-Because I'm also using dbt-Cloud for the dbt-training project jaffle_shop, we have two projects combined in this one dbt-project structure. 
-The two projects are seperated from each other by using different subfolders and prefixes (bec) for the SQL files.
+
 
 
 ## Extract
 For this project the data got extracted/downloaded from the kaggle website. The data was already split in 9 different csv files.
 
 ## Load
-Loaded the CSV files from the Kaggle project to a S3 bucket. Copied the data from the S3 bucket into Redshift.
+The CSV files from the Kaggle project were loaded into a S3 bucket. 
 
-Loaded the CSV file for the date dimension direct as a seed into the Github repository.
+Afterwards we create the tables in Redshift for our raw data and copy the data from the files of the S3 bucket into Redshift.
+```
+copy brazil_ecommerce.customers from 's3://brazil-ecommerce/olist_customers.csv' 
+iam_role 'arn:aws:iam::placeholder:role/placeholder'
+CSV
+IGNOREHEADER 1;
+```
+
+The calendar data which is needed for time anaylses is loaded directly as a CSV file into the dbt seed folder. 
+More information under the topic Sources & Seeds.
 
 ## Transform (dbt)
 Using the ELT approach the transformation of the data starts after loading the data into the data warehouse (Redshift).
 
 ### Project structure & Datamodel
+
+**Attention:** For this project I use the free dbt-Cloud version, which allows us to only manage one project. 
+Because I'm also using dbt-Cloud for the dbt-training project "jaffle_shop", we have two projects combined in this one dbt-project structure. 
+The two projects are seperated from each other by using different subfolders in our models and unified prefixes (bec) for the SQL files.
+
+- Projectstructure 
+- Materialization and structure in Redshift
 
 ### Sources & Seeds
 
