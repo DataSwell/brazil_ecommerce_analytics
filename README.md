@@ -128,6 +128,12 @@ The image below shows the difference between the tables created by the payments 
 
 ### Marts
 
+The data marts are the part where all comes together and they are the tables which will be accessed and analyzed by the business user with their BI-Tools like Power BI, Tableau or SQL Querys. The marts represents concepts or entities of the business, for example users, customers or stores, as well as business events like orders or payments.
+
+The marts can be organized as dimensional models (star schema) with dimensions and facts as well as multiple wide tables. The dimensional model is easy to understand commnly known and use less duplicated data than wide tables. For this project we will use the dimensional model approach, because we only use a small dataset and the focus is on education.
+
+But in the modern data warehousing where storage is cheap and compute is more expensive, it is a good approach to use wide tables. This is a denormalized approach, because there is one wide table for each entity/concept. The same data like customer_id will be stored in multiple wide tables which increase the storage. On the otherhand it is not necessary to use joins like in the star schema which reduce the compute costs. I will use wide tables in the football_analytics project.
+
 #### Dimensions
 	- customer
 	- products
