@@ -7,16 +7,15 @@ The dataset provides information about e-commerce orders in the years 2016-2018.
 
 **Context**
 
-This dataset was generously provided by Olist, the largest department store in Brazilian marketplaces. Olist connects small businesses from all over Brazil to channels without hassle and with a single contract. Those merchants are able to sell their products through the Olist Store and ship them directly to the customers using Olist logistics partners. 
-See more on our website: www.olist.com. After a customer purchases the product from Olist Store a seller gets notified to fulfill that order. Once the customer receives the product, or the estimated delivery date is due, the customer gets a satisfaction survey by email where he can give a note for the purchase experience and write down some comments.
+This dataset was generously provided by Olist, the largest department store in Brazilian marketplaces. Olist connects small businesses from all over Brazil to channels without hassle and with a single contract. Those merchants are able to sell their products through the Olist Store and ship them directly to the customers using Olist logistics partners(www.olist.com). After a customer purchases the product from Olist Store a seller gets notified to fulfill that order. Once the customer receives the product, or the estimated delivery date is due, the customer gets a satisfaction survey by email where he can give a note for the purchase experience and write down some comments.
 
 **Attention**
 - An order might have multiple items.
 - Each item might be fulfilled by a distinct seller.
 - All text identifying stores and partners where replaced by the names of Game of Thrones great houses.
 
-The project follows the for the modern data stack more common ELT approch instead of ETL. All the data from kaggle will be loaded into a Redshift data warehouse. 
-Afterwards the data will be transformed and new models will be build with dbt. In dbt it is also possible to include tests and documentation for the project.
+The project follows the for the modern data stack more common ELT approch instead of ETL. All the data from kaggle will be loaded into **Redshift** data warehouse. 
+Afterwards the data will be transformed and new models will be build with **dbt**. In dbt it is also possible to include tests and documentation for the project. After transforming the data and building data marts, the data marts can be analysed with BI tools like **Power BI** which I will use to create dashboards.
 
 
 ## Extract
@@ -90,11 +89,16 @@ are specific queries that you run against your models. These are run on the enti
 	- Is there a difference during the years?
 	- Are products with more pictures ordered more often than others from the same category?
 
+![oilst_product_data_dasboard](https://user-images.githubusercontent.com/63445819/222457102-2825a6ae-2a1c-4f38-9626-337bf6fc62d8.png)
+
 - **customer / sellers / reviews:**
 	- Where live the customers with the most value of orders?
 	- Are products bought more in some regions than in others?
 	- Where are the top-selling companies located
 	- Which products do the top-selling companies sell?
+
+![oilst_customer_seller_data_dasboard](https://user-images.githubusercontent.com/63445819/222457149-ed6b2fef-2239-444c-995d-3e2e99d92a54.png)
+
 
 - **orders / payment:**
 	- How many orders were delivered in time?
@@ -106,6 +110,7 @@ are specific queries that you run against your models. These are run on the enti
 	- What percentage of orders get reviewed?
 	- What percentage of reviews gets answered?
 
+![oilst_order_and_payment_data_dasboard](https://user-images.githubusercontent.com/63445819/222457184-3f86e1c2-7644-44d2-87b7-a5cd96e7e918.png)
 	
 
 
