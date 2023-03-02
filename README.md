@@ -22,7 +22,7 @@ For this project the data got extracted/downloaded from the kaggle website. The 
 The CSV files from the Kaggle project were loaded into a S3 bucket.
 ![bce_s3_bucket](https://user-images.githubusercontent.com/63445819/222436537-3ce9752a-f2be-4fb4-82a7-a18f1ab765bb.png)
 
-Afterwards we create the tables in Redshift for our raw data and copy the data from the files of the S3 bucket into Redshift.
+Afterwards I created in Redshift one table for each csv file and copied the raw data from the S3 bucket into Redshift. The image below shows the COPY command for the customers data from the customer.csv file into the Redshift table brazil_ecommerce.customers
 ```
 copy brazil_ecommerce.customers from 's3://brazil-ecommerce/olist_customers.csv' 
 iam_role 'arn:aws:iam::placeholder:role/placeholder'
@@ -30,7 +30,7 @@ CSV
 IGNOREHEADER 1;
 ```
 
-The calendar data which is needed for time anaylses is loaded directly as a CSV file into the dbt seed folder. 
+The time data (calendar) which is needed for time anaylses is loaded directly as a CSV file into the dbt seed folder. 
 More information under the topic Sources & Seeds.
 
 ## Transform (dbt)
@@ -46,7 +46,7 @@ Dbt-Cloud also allows us only to connect to one database in AWS Redshift. Theref
 
 ![dbt_and_redshift_structure](https://user-images.githubusercontent.com/63445819/222439077-4c4aef58-7acb-4fc2-9df6-2e415ea451b8.png)
 
-The dbt structure with the different layers and functionalities will be explained in the next parts.
+The dbt structure with the different layers and functionalities will be explained in the next parts. In each layer (staging, intermediate, marts) exists YAML files and SQL files. The YAML files are used for configuration, we can specify descriptions for models and columns or add generic tests. The SQL files contain the code which will be compiled and run by dbt in our data warehouse, to transform the data and create views/tables/CTEs.
 
 ### Sources & Seeds
 
