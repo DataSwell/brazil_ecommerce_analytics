@@ -1,21 +1,19 @@
 # dbt-Analytics
 
 ## Project - Brazil e-commerce analytics
-In this project we will use the brazil e-commerce (bce) dataset of the company Olist from Kaggle (https://www.kaggle.com/datasets/olistbr/brazilian-ecommerce).
-Olist operates as an online e-commerce site for sellers, that connects merchants and their products to the main marketplaces of Brazil. 
-The dataset provides information about e-commerce orders in the years 2016-2018. 
+In this project we will use the brazil e-commerce (bce) dataset from Kaggle (https://www.kaggle.com/datasets/olistbr/brazilian-ecommerce).
 
-**Context**
+>**Context**
+>
+>This dataset was generously provided by Olist, the largest department store in Brazilian marketplaces. Olist connects small businesses from all over Brazil to channels without hassle and with a single contract. Those merchants are able to sell their products through the Olist Store and ship them directly to the customers using Olist logistics partners(www.olist.com). After a customer purchases the product from Olist Store a seller gets notified to fulfill that order. Once the customer receives the product, or the estimated delivery date is due, the customer gets a satisfaction survey by email where he can give a note for the purchase experience and write down some comments. The dataset provides information about e-commerce orders in the years 2016-2018. 
+>
+>**Attention**
+>- An order might have multiple items.
+>- Each item might be fulfilled by a distinct seller.
+>- All text identifying stores and partners where replaced by the names of Game of Thrones great houses.
 
-This dataset was generously provided by Olist, the largest department store in Brazilian marketplaces. Olist connects small businesses from all over Brazil to channels without hassle and with a single contract. Those merchants are able to sell their products through the Olist Store and ship them directly to the customers using Olist logistics partners(www.olist.com). After a customer purchases the product from Olist Store a seller gets notified to fulfill that order. Once the customer receives the product, or the estimated delivery date is due, the customer gets a satisfaction survey by email where he can give a note for the purchase experience and write down some comments.
-
-**Attention**
-- An order might have multiple items.
-- Each item might be fulfilled by a distinct seller.
-- All text identifying stores and partners where replaced by the names of Game of Thrones great houses.
-
-The project follows the for the modern data stack more common ELT approch instead of ETL. All the data from kaggle will be loaded into **Redshift** data warehouse. 
-Afterwards the data will be transformed and new models will be build with **dbt**. In dbt it is also possible to include tests and documentation for the project. After transforming the data and building data marts, the data marts can be analysed with BI tools like **Power BI** which I will use to create dashboards.
+The project follows the for the modern data stack more common ELT approch instead of ETL. All the data from kaggle will be loaded into **Redshift** a data warehouse. 
+Afterwards the data will be transformed and new models will be build with **dbt**. In dbt it is also possible to include tests and documentation. After transforming the data and building data marts, the data marts can be analysed with BI tools like **Power BI**, which I will use to create dashboards.
 
 
 ## Extract
