@@ -22,7 +22,7 @@ bec_orders as (
         cast(order_estimated_delivery_date as date) as estimated_delivery_date,
         order_estimated_delivery_date as estimated_delivery_timestamp
     
-    from {{ source('src_brazil_ecommerce', 'orders')}}
+    from source
 )
 
 select * from bec_orders

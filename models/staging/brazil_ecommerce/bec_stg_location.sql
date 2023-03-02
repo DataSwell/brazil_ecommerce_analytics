@@ -1,6 +1,4 @@
-with 
-
-source as (
+with source as (
 
     select * from {{ source('src_brazil_ecommerce', 'location')}}
 ),
@@ -16,7 +14,7 @@ bec_location as (
         geolocation_city as city,
         geolocation_state as state
 
-    from {{ source('src_brazil_ecommerce', 'location')}}
+    from source
 )
 
 select * from bec_location

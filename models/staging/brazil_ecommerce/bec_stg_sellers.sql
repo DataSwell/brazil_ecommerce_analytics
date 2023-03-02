@@ -1,6 +1,4 @@
-with 
-
-source as (
+with source as (
 
     select * from {{ source('src_brazil_ecommerce', 'sellers')}}
 ),
@@ -13,7 +11,7 @@ bec_sellers as (
         seller_city,
         seller_state
 
-    from {{ source('src_brazil_ecommerce', 'sellers')}}
+    from source
 )
 
 select * from bec_sellers

@@ -17,7 +17,7 @@ bec_reviews as (
         cast(review_answer_timestamp as date) as review_answer_date,
         review_answer_timestamp
 
-    from {{ source('src_brazil_ecommerce', 'reviews')}}
+    from source
 )
 
 select * from bec_reviews
