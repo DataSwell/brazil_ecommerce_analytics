@@ -18,7 +18,7 @@ with customer_payments as (
     
     from {{ ref('bec_fct_orders')}} fo
 
-    left join {{ ref('stg_bec_customers') }} cu on fo.customer_id = cu.customer_id
+    left join {{ ref('bec_stg_customers') }} cu on fo.customer_id = cu.customer_id
 
     group by customer_unique_id
 

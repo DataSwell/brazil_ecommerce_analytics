@@ -1,6 +1,6 @@
 with order_items as (
 
-    select * from {{ ref('stg_bec_order_items')}}
+    select * from {{ ref('bec_stg_order_items')}}
 ),
 
 products as (
@@ -8,23 +8,23 @@ products as (
     select
         p.product_id,
         pt.category_english as product_category
-    from {{ ref('stg_bec_products')}} p
-    left join {{ ref('stg_bec_product_cat_translate')}} pt on p.product_category = pt.category_portuguese
+    from {{ ref('bec_stg_products')}} p
+    left join {{ ref('bec_stg_product_cat_translate')}} pt on p.product_category = pt.category_portuguese
 ),
 
 sellers as (
 
-    select * from {{ ref('stg_bec_sellers')}}
+    select * from {{ ref('bec_stg_sellers')}}
 ),
 
 customers as (
 
-    select * from {{ ref('stg_bec_customers')}}
+    select * from {{ ref('bec_stg_customers')}}
 ),
 
 orders as (
 
-    select * from {{ ref('stg_bec_orders')}}
+    select * from {{ ref('bec_stg_orders')}}
 ),
 
 final as (
