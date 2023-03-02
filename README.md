@@ -52,8 +52,38 @@ The folder structure of the project should reflect the data flow. It starts with
 
 ### Staging Models
 
-The staging layer 
+The goal of the staging layer is to access the raw data of Redshift, select the necessary columns and process light transformations like changing column names, generating new columns by concatenating information. A best practise is to use consistent pattern of file names. After the "bec" prefix all staging models continue with a "stg" prefix. Another best practice by dbt is to use for each raw data table one seperate staging model SQL-file.
 
+The staging folder contains the two YAML files sources and staging. The sources YAML-file configures which data from Redshift will be accessed. The image below shows the bec_sources.yml file. The name of the source is "src_brazil_ecommerce" and will be needed in the SQL-files. As well I add a short description, the referenced database and the schema in the database. For each table in Redshift I also added tests for specific columns.
+
+![sources_yaml](https://user-images.githubusercontent.com/63445819/222470756-1aef0b42-6500-47be-90b8-81a9e5044e06.png)
+
+The staging.yml file is similiar and contains the configuration for each staging-model file, with the name and also generic tests.
+
+Each staging models is organized with two CTEs. One for pulling the data from the specified sources (sources.yml) with the source() macro and one to process the transformation. In the exampe below we use the CTE source to pull the data from the source table payment of the previously defined source "src_brazil_ecommerce". Afterwards we transform the data in the CTE bec_payments to generate a surrogate key by concatenating two columns. The transformed data will be materialized as a view in Redshift.
+
+```
+with source as (
+
+    select * from {{ source('src_brazil_ecommerce', 'payments')}}
+),
+
+bec_payments as (
+
+    select 
+        -- concat for creating surrogate key
+        concat(order_id, cast(payment_sequential as varchar(2))) as payment_id,
+        order_id,
+        payment_sequential,
+        payment_type,
+        payment_installments,
+        payment_value as amount
+
+    from source
+)
+
+select * from bec_payments
+```
 
 ##### Staging 
 
