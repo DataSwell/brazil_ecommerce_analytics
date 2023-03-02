@@ -50,7 +50,7 @@ The dbt structure with the different layers and functionalities will be explaine
 
 The folder structure of the project should reflect the data flow. It starts with a wide variety of source-conformed models and transforms them into fewer, richer business-conformed models. This can be dimensional models with a star/snowflake schema or wide tables for different business topics.
 
-### Staging Models
+### Staging
 
 The goal of the staging layer is to access the raw data of Redshift, select the necessary columns and process light transformations like changing column names, generating new columns by concatenating information. A best practise is to use consistent pattern of file names. After the "bec" prefix all staging models continue with a "stg" prefix. Another best practice by dbt is to use for each raw data table one seperate staging model SQL-file.
 
@@ -60,7 +60,7 @@ The staging folder contains the two YAML files sources and staging. The sources 
 
 The staging.yml file is similiar and contains the configuration for each staging-model file, with the name and also generic tests.
 
-Each staging models is organized with two CTEs. One for pulling the data from the specified sources (sources.yml) with the source() macro and one to process the transformation. In the exampe below we use the CTE source to pull the data from the source table payment of the previously defined source "src_brazil_ecommerce". Afterwards we transform the data in the CTE bec_payments to generate a surrogate key by concatenating two columns. The transformed data will be materialized as a view in Redshift.
+Each staging models is organized with two CTEs. One for pulling the data from the specified sources (sources.yml) with the source() macro and one to process the transformation. In the exampe below we use the CTE source to pull the data from the source table payment of the previously defined source "src_brazil_ecommerce". Afterwards we transform the data in the CTE bec_payments to generate a surrogate key by concatenating two columns. The transformed data will be materialized as a view in Redshift. The materialization of the models can be specified for each model layer in the dbt_project.yml file.
 
 ```
 with source as (
@@ -84,8 +84,6 @@ bec_payments as (
 
 select * from bec_payments
 ```
-
-##### Staging 
 
 ### Intermediate 
 
