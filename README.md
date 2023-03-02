@@ -1,6 +1,5 @@
-# dbt-Analytics
+# Brazil e-commerce data analytics with dbt
 
-## Project - Brazil e-commerce analytics
 In this project we will use the brazil e-commerce (bce) dataset from Kaggle (https://www.kaggle.com/datasets/olistbr/brazilian-ecommerce).
 
 >**Context**
