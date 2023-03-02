@@ -5,7 +5,7 @@
 
 with payments as (
 
-   select * from {{ ref('stg_bec_payments') }}
+   select * from {{ ref('bec_stg_payments') }}
 ),
 
 aggregate_payments_to_order_grain as (

@@ -1,19 +1,38 @@
 # dbt-Analytics
 
 ## Project - Brazil e-commerce analytics
-In this project we will use the brazil e-commerce dataset from Kaggle (https://www.kaggle.com/datasets/olistbr/brazilian-ecommerce). The dataset includes information about e-commerce orders of brazil in the years 2016-2018.
+In this project we will use the brazil e-commerce (bce) dataset of the company Olist from Kaggle (https://www.kaggle.com/datasets/olistbr/brazilian-ecommerce).
+Olist operates as an online e-commerce site for sellers, that connects merchants and their products to the main marketplaces of Brazil. 
+The dataset provides information about e-commerce orders in the years 2016-2018. 
+
+**Context**
+This dataset was generously provided by Olist, the largest department store in Brazilian marketplaces. Olist connects small businesses from all over Brazil to channels without hassle and with a single contract. Those merchants are able to sell their products through the Olist Store and ship them directly to the customers using Olist logistics partners. 
+See more on our website: www.olist.com. After a customer purchases the product from Olist Store a seller gets notified to fulfill that order. Once the customer receives the product, or the estimated delivery date is due, the customer gets a satisfaction survey by email where he can give a note for the purchase experience and write down some comments.
+
+**Attention**
+- An order might have multiple items.
+- Each item might be fulfilled by a distinct seller.
+- All text identifying stores and partners where replaced by the names of Game of Thrones great houses.
+
+The project follows the for the modern data stack more common ELT approch instead of ETL. All the data from kaggle will be loaded into a Redshift data warehouse. 
+Afterwards the data will be transformed and new models will be build with dbt. In dbt it is also possible to include tests and documentation for the project.
+**Attention:** For this project we use the free dbt-Cloud version, which allows us to only manage one project. 
+Because I'm also using dbt-Cloud for the dbt-training project jaffle_shop, we have two projects combined in this one dbt-project structure. 
+The two projects are seperated from each other by using different subfolders and prefixes (bec) for the SQL files.
+
 
 ## Extract
-
+For this project the data got extracted/downloaded from the kaggle website. The data was already split in 9 different csv files.
 
 ## Load
-- Loaded the CSV files from the Kaggle project to a S3 bucket. Copied the data from the S3 bucket into Redshift.
-- Loaded the CSV file for the date dimension direct as a seed into the Github repository.
+Loaded the CSV files from the Kaggle project to a S3 bucket. Copied the data from the S3 bucket into Redshift.
+
+Loaded the CSV file for the date dimension direct as a seed into the Github repository.
 
 ## Transform (dbt)
 Using the ELT approach the transformation of the data starts after loading the data into the data warehouse (Redshift).
 
-### Datamodel
+### Project structure & Datamodel
 
 ### Sources & Seeds
 

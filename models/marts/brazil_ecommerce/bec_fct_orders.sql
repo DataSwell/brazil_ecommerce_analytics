@@ -1,12 +1,12 @@
 with orders as (
 
-    select * from {{ ref('stg_bec_orders')}}
+    select * from {{ ref('bec_stg_orders')}}
 ),
 
 
 order_payments as (
 
-    select * from {{ ref('int_bec_payments_pivoted_to_orders')}}
+    select * from {{ ref('bec_int_payments_pivoted_to_orders')}}
 ),
 
 

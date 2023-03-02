@@ -1,12 +1,12 @@
 with customers as (
 
-    select * from {{ ref('stg_bec_customers')}}
+    select * from {{ ref('bec_stg_customers')}}
 ),
 
 
 customer_payments as (
 
-    select * from {{ ref('int_map_customer_ids')}} 
+    select * from {{ ref('bec_int_map_customer_ids')}} 
 
 ),
 
