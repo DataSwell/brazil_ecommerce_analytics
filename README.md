@@ -44,10 +44,13 @@ Using the ELT approach the transformation of the data starts after loading the d
 
 **Attention:** For this project I use the free dbt-Cloud version, which allows us to only manage one project. 
 Because I'm also using dbt-Cloud for the dbt-training project "jaffle_shop", we have two projects combined in this one dbt-project structure. 
-The two projects are seperated from each other by using different subfolders in our models and unified prefixes (bec) for the SQL files.
+The two projects are seperated from each other by using different subfolders in our models and unified prefixes (bec) for the SQL files (image below, left)
 
-- Projectstructure 
-- Materialization and structure in Redshift
+Dbt-Cloud also allows us only to connect to one database in AWS Redshift. Therefore we have a similiar structure in Redshift as well. The raw data for both projects (brazil_ecommerce, jaffle_shop) and the from dbt created models are stored in different schemas in the same database "analytics" (image below, right).
+
+![dbt_and_redshift_structure](https://user-images.githubusercontent.com/63445819/222439077-4c4aef58-7acb-4fc2-9df6-2e415ea451b8.png)
+
+The dbt structure with the different layers and functionalities will be explained in the next parts.
 
 ### Sources & Seeds
 
