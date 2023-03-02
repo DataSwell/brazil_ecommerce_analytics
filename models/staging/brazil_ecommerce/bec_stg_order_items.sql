@@ -1,6 +1,4 @@
-with 
-
-source as (
+with source as (
 
     select * from {{ source('src_brazil_ecommerce', 'order_items')}}
 ),
@@ -17,7 +15,7 @@ bec_order_items as (
         price,
         freight_value
 
-    from {{ source('src_brazil_ecommerce', 'order_items')}}
+    from source
 )
 
 select * from bec_order_items

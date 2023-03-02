@@ -1,6 +1,4 @@
-with 
-
-source as (
+with source as (
 
     select * from {{ source('src_brazil_ecommerce', 'products')}}
 ),
@@ -18,7 +16,7 @@ bec_products as (
         product_height_cm as height_cm,
         product_width_cm as product_width_cm
     
-    from {{ source('src_brazil_ecommerce', 'products')}}
+    from source
 )
 
 select * from bec_products

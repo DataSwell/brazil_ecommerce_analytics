@@ -1,6 +1,4 @@
-with 
-
-source as (
+with source as (
 
     select * from {{ source('src_brazil_ecommerce', 'payments')}}
 ),
@@ -16,7 +14,7 @@ bec_payments as (
         payment_installments,
         payment_value as amount
 
-    from {{ source('src_brazil_ecommerce', 'payments')}}
+    from source
 )
 
 select * from bec_payments
