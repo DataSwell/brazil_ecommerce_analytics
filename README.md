@@ -87,6 +87,45 @@ select * from bec_payments
 
 ### Intermediate 
 
+In the intermediate layer are SQL-files with more complex transformations then in the staging layer. The layer will be often used for transformations like pivoting, aggregation or joining. We have two intermediate modules in this project, which use the prefix "int" in their filenames. For example, the file bec_int_payments.sql pivot the different payments for one order and aggregates the grain of the different payments for each payment_type as well as the total amount per order.
+
+```
+{% set payment_methods = ['credit_card', 'voucher', 'not_defined', 'boleto', 'debit_card'] %}
+ 
+
+with payments as (
+
+   select * from {{ ref('bec_stg_payments') }}
+),
+
+aggregate_payments_to_order_grain as (
+
+    select
+        order_id,
+        {% for payment_method in payment_methods -%}
+            sum(
+                case
+                    when payment_type = '{{ payment_method }}' 
+                    then amount
+                    end
+            ) as {{ payment_method }}_amount,
+        {%- endfor %}
+
+        sum(amount) as order_total_amount
+    
+    from payments
+
+    group by order_id
+)
+
+select * from aggregate_payments_to_order_grain
+```
+
+The image below shows the difference between the tables created by the payments staging model (top) and the pivoted intermediate model (bottom)
+
+![int_payment](https://user-images.githubusercontent.com/63445819/222537089-ed279900-66e3-4dd8-aa39-a95ecf748b2d.png)
+
+
 ### Marts
 
 #### Dimensions
@@ -99,7 +138,9 @@ select * from bec_payments
 	- orders
 	- order_items
 	- payments
-	
+
+### dbt DAGs / Lineage
+
 ### Seeds
 
 ### Tests
