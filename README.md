@@ -68,7 +68,7 @@ The folder structure of the project should reflect the data flow. It starts with
 
 #### Facts
 	- orders
-    	- order_items
+	- order_items
 	- payments
 
 ### Tests
