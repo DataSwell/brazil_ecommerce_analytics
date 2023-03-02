@@ -19,12 +19,12 @@ The project follows the for the modern data stack more common ELT approch instea
 Afterwards the data will be transformed and new models will be build with dbt. In dbt it is also possible to include tests and documentation for the project.
 
 
-
 ## Extract
 For this project the data got extracted/downloaded from the kaggle website. The data was already split in 9 different csv files.
 
 ## Load
-The CSV files from the Kaggle project were loaded into a S3 bucket. 
+The CSV files from the Kaggle project were loaded into a S3 bucket.
+![bce_s3_bucket](https://user-images.githubusercontent.com/63445819/222436537-3ce9752a-f2be-4fb4-82a7-a18f1ab765bb.png)
 
 Afterwards we create the tables in Redshift for our raw data and copy the data from the files of the S3 bucket into Redshift.
 ```
