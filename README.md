@@ -31,7 +31,7 @@ IGNOREHEADER 1;
 ```
 
 The time data (calendar) which is needed for time anaylses is loaded directly as a CSV file into the dbt seed folder. 
-More information under the topic Sources & Seeds.
+More information under the topic Transform-Seeds.
 
 ## Transform (dbt)
 Using the ELT approach the transformation of the data starts after loading the data into the data warehouse (Redshift).
@@ -50,13 +50,14 @@ The dbt structure with the different layers and functionalities will be explaine
 
 The folder structure of the project should reflect the data flow. It starts with a wide variety of source-conformed models and transforms them into fewer, richer business-conformed models. This can be dimensional models with a star/snowflake schema or wide tables for different business topics.
 
-### Staging
+### Staging Models
 
-#### Sources & Seeds
+The staging layer 
 
-##### Staging Models
 
-### Intermediate
+##### Staging 
+
+### Intermediate 
 
 ### Marts
 
@@ -70,6 +71,8 @@ The folder structure of the project should reflect the data flow. It starts with
 	- orders
 	- order_items
 	- payments
+	
+### Seeds
 
 ### Tests
 - **Generic Tests**
