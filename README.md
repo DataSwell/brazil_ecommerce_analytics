@@ -48,20 +48,27 @@ Dbt-Cloud also allows us only to connect to one database in AWS Redshift. Theref
 
 The dbt structure with the different layers and functionalities will be explained in the next parts. In each layer (staging, intermediate, marts) exists YAML files and SQL files. The YAML files are used for configuration, we can specify descriptions for models and columns or add generic tests. The SQL files contain the code which will be compiled and run by dbt in our data warehouse, to transform the data and create views/tables/CTEs.
 
-### Sources & Seeds
+The folder structure of the project should reflect the data flow. It starts with a wide variety of source-conformed models and transforms them into fewer, richer business-conformed models. This can be dimensional models with a star/snowflake schema or wide tables for different business topics.
 
 ### Staging
 
+#### Sources & Seeds
+
+##### Staging Models
+
+### Intermediate
+
 ### Marts
-- **Dimensions (dim):**
+
+#### Dimensions
 	- customer
 	- products
 	- sellers
 	- calendar
 
-- **Facts (fct):** 
+#### Facts
 	- orders
-    - order_items
+    	- order_items
 	- payments
 
 ### Tests
