@@ -207,7 +207,6 @@ In this project we specified generic tests for the source data in Redhift as wel
 
 Two singular tests are specified for this project. The code in "order_items_surrogate_keys.sql" creates a surrogate key by concatenating the order_id and oder_item_id and test if the created surrogate key is unique. The code in "paymount_amount_greater_0.sql" tests if the sum of payments for one order_id are greater then 0.
 
-### Documentation
 
 ## Analytics & Visualization 
 
