@@ -185,7 +185,24 @@ select * from calendar
 
 ### Tests
 >- **Generic Tests** are written in YAML and return the number of records that do not meet your assertions. These are run on specific columns in a model. The standard package provides the generic tests: unique, not_null, accepted_values and relationships. The tests unique and not_null for example can be used to test primary keys.
->
+
+In this project we specified generic tests for the source data in Redhift as well as the staging model. For the staging model "bec_stg_orders" are unique and not null tests for the primary key specified. Also a relationship test for the values in the colmun customer_id is specified. This test checks if all values (foreign keys) in the column "customer_id" of the table "bec_stg_orders" also exists in the column in the origin table "bec_stg_customers".
+
+```
+  - name: bec_stg_orders
+    columns:
+      - name: order_id
+        tests:
+        - unique
+        - not_null
+      - name: customer_id
+        tests:
+          - not_null
+          - relationships:
+              to: ref('stg_bec_customers')
+              field: customer_id
+```
+
 >- **Singular Tests** are specific queries that you run against your models. These are run on the entire model. These types of tests are user defined tests for specific attributes that needs to be validatet. For example the total amount of an order can not be negative. These type of tests are not specified in the YML file, they are saved as a SQL file in the tests order of the dbt-project.
 
 
