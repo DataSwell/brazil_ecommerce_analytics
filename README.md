@@ -205,6 +205,7 @@ In this project we specified generic tests for the source data in Redhift as wel
 
 >- **Singular Tests** are specific queries that you run against your models. These are run on the entire model. These types of tests are user defined tests for specific attributes that needs to be validatet. For example the total amount of an order can not be negative. These type of tests are not specified in the YML file, they are saved as a SQL file in the tests order of the dbt-project.
 
+Two singular tests are specified for this project. The code in "order_items_surrogate_keys.sql" creates a surrogate key by concatenating the order_id and oder_item_id and test if the created surrogate key is unique. The code in "paymount_amount_greater_0.sql" tests if the sum of payments for one order_id are greater then 0.
 
 ### Documentation
 
