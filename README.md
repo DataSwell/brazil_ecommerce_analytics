@@ -151,6 +151,8 @@ Facts are the measurements that result from a business process event and are alm
 	- payments: amount for each payment sequencial, payment type.
 	- reviews: review score for a order, review date, answer date.
 	
+#### Data Model
+	
 ![data_model_powerbi](https://user-images.githubusercontent.com/63445819/222542732-ab50b884-2815-4f6a-9773-8e41954d409b.png)
 
 ### dbt DAGs (directed acyclic graphs) / Lineage
@@ -242,8 +244,3 @@ Two singular tests are specified for this project. The code in "order_items_surr
 
 ![oilst_order_and_payment_data_dasboard](https://user-images.githubusercontent.com/63445819/222457184-3f86e1c2-7644-44d2-87b7-a5cd96e7e918.png)
 	
-
-
-
-
-
