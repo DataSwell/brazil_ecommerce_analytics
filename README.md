@@ -239,6 +239,7 @@ There are 3 different dashboards with diferent visuals (diagrams, tables) to vis
 	- Where live the customers with the most value of orders?
 	- Are products bought more in some regions than in others?
 	- Where are the top-selling companies located
+		- 4 of the 5 top seller are located in Sao Paulo. The 2nd best seller is located in
 	- Which products do the top-selling companies sell?
 
 ![oilst_customer_seller_data_dasboard](https://user-images.githubusercontent.com/63445819/222457149-ed6b2fef-2239-444c-995d-3e2e99d92a54.png)
