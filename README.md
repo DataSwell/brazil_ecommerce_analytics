@@ -199,7 +199,7 @@ In this project we specified generic tests for the source data in Redhift as wel
         tests:
           - not_null
           - relationships:
-              to: ref('stg_bec_customers')
+              to: ref('bec_stg_customers')
               field: customer_id
 ```
 
