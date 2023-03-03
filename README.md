@@ -164,6 +164,25 @@ The following image shows the DAG of the dimension products. The dimension model
 
 ### Seeds
 
+Seeds are CSV files in the dbt project (typically in your seeds directory), that dbt can load into the data warehouse. Seeds can be referenced in downstream models the same way as referencing other models by using the ref() function. Because these CSV files are located in the dbt repository, they are version controlled and code reviewable. Seeds are best suited to static data which changes infrequently.
+
+In this project we use dbt seeds for the time data of the calender dimension. As well as the models also the seeds folder contains a YAML file for the configuration of the seed files. The following code and image shows the staging model "bec_stg_calender" which references the calendarcsv file in the seeds folder instead of a table from Redshift.
+
+```
+with calendar as (
+
+    select 
+        *,
+        extract(year from date) as year_num,
+        concat(daynumofweek::varchar, dayname) as day_num_and_name
+    from {{ ref('calendar')}}
+)
+
+select * from calendar
+```
+![seed_lineage](https://user-images.githubusercontent.com/63445819/222594730-ea6e4897-fc58-4dd2-b090-d8ac1bdbe7fc.png)
+
+
 ### Tests
 - **Generic Tests**
 are written in YAML and return the number of records that do not meet your assertions. These are run on specific columns in a model. The standard package provides the generic tests: unique, not_null, accepted_values and relationships. The tests unique and not_null for example can be used to test primary keys.
