@@ -239,8 +239,11 @@ There are 3 different dashboards with diferent visuals (diagrams, tables) to vis
 	- Where live the customers with the most value of orders?
 	- Are products bought more in some regions than in others?
 	- Where are the top-selling companies located
-		- 4 of the 5 top seller are located in Sao Paulo. The 2nd best seller is located in
+		- 4 of the 5 top seller are located in the state Sao Paulo. The 2nd best seller is located in the state Bahia.
 	- Which products do the top-selling companies sell?
+		- 1) Mostly watch_gifts with around 17% of total sales volume of watch_gifts. The seller earns 200k of his 230k total sales volume with watches. He sold 1155 items with an average price of 198.47 brazil real per item.
+		- 2) The main business are computers, in this category he holds 75% of the total sales volume. Also around 75% of his total earnings are based on selling computers. He sold 410 items with an average price of 543,36. Compared to the number one seller, he sold less items, but computers have a higher average price then watches.
+		- 3) 82.5% of his sales volume are made with bed & bath articels. In this category he holds around 16% of the total sales volume. The avergae price with 100.92 is lower then computers and watches but he sold nearly 2000 items.
 
 ![oilst_customer_seller_data_dasboard](https://user-images.githubusercontent.com/63445819/222457149-ed6b2fef-2239-444c-995d-3e2e99d92a54.png)
 
