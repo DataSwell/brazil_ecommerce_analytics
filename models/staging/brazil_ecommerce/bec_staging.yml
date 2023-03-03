@@ -1,35 +1,35 @@
 version: 2
 
 models:
-  - name: stg_bec_customers
+  - name: bec_stg_customers
     columns:
       - name: customer_id
         tests:
           - unique
           - not_null
       
-  - name: stg_bec_order_items
+  - name: bec_stg_order_items
     columns:
       - name: order_id
         tests:
           - not_null
           - relationships:
-              to: ref('stg_bec_orders')
+              to: ref('bec_stg_orders')
               field: order_id
       - name: product_id
         tests:
           - not_null
           - relationships:
-              to: ref('stg_bec_products')
+              to: ref('bec_stg_products')
               field: product_id
       - name: seller_id
         tests:
           - not_null
           - relationships:
-              to: ref('stg_bec_sellers')
+              to: ref('bec_stg_sellers')
               field: seller_id
 
-  - name: stg_bec_orders
+  - name: bec_stg_orders
     columns:
       - name: order_id
         tests:
@@ -39,10 +39,10 @@ models:
         tests:
           - not_null
           - relationships:
-              to: ref('stg_bec_customers')
+              to: ref('bec_stg_customers')
               field: customer_id
           
-  - name: stg_bec_payments
+  - name: bec_stg_payments
     columns:
       - name: payment_id
         tests:
@@ -51,17 +51,17 @@ models:
       - name: order_id
         tests:
           - relationships:
-              to: ref('stg_bec_orders')
+              to: ref('bec_stg_orders')
               field: order_id      
 
-  - name: stg_products
+  - name: bec_stg_products
     columns:
       - name: product_id
         tests:
         - unique
         - not_null
 
-  - name: stg_bec_sellers
+  - name: bec_stg_sellers
     columns:
       - name: seller_id
         tests:
