@@ -212,16 +212,23 @@ Two singular tests are specified for this project. The code in "order_items_surr
 
 ## Analytics & Visualization 
 
+With BI tools like PowerBI, Tableau or Qlik it is easy to connect toyour datawarehouse and access the final models for analyses.
+
 ### Metrics/KPI
 
+There are 3 different dashboards with diferent visuals (diagrams, tables) to visualize important metrics for specific topics/entities. The dashboards are also interactive, if you select a specific field in a visual all other viuals which use the same values will adept there values to the selection. It´s the same for the first dashboard, which contains an order_date slicer in the top right corner. If the slicer is moved, all the other visuals will change and represent the data for the chosen range of the order_date.
+
 - **products:**
-	- Which product categories are bought the most?
+	- Which product categories have the largest sales volume (brazilian real)?
+		- All time: 1) healty & beauty = 1.25mil, 2) watches_gift = 1.2 mil, 3) bed_bath = 1.04mil
+		- 2017: 1) bed_bath = 498k 2) watches_gift = 487k 3)health_beauty = 481k 
+		- 2018: 1) health_beauty = 770k 2) watches_gift = 708k 3) bed_bath = 538k
 	- What are Count, SUM, AVG, MIN, MAX per product group?
 	- In which months are most products bought? 
 	- Is there a difference during the years?
 	- Are products with more pictures ordered more often than others from the same category?
 
-![oilst_product_data_dasboard](https://user-images.githubusercontent.com/63445819/222457102-2825a6ae-2a1c-4f38-9626-337bf6fc62d8.png)
+![oilst_product_data_dasboard](https://user-images.githubusercontent.com/63445819/222719139-99d4eca8-3af5-4693-9b76-aebffd52a7d3.png)
 
 - **customer / sellers / reviews:**
 	- Where live the customers with the most value of orders?
