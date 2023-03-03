@@ -50,7 +50,7 @@ The dbt structure with the different layers and functionalities will be explaine
 
 The folder structure of the project should reflect the data flow. It starts with a wide variety of source-conformed models and transforms them into fewer, richer business-conformed models. This can be dimensional models with a star/snowflake schema or wide tables for different business topics.
 
-### Staging Models
+### Staging
 
 The goal of the staging layer is to access the raw data of Redshift, select the necessary columns and process light transformations like changing column names, generating new columns by concatenating information. A best practise is to use consistent pattern of file names. After the "bec" prefix all staging models continue with a "stg" prefix. Another best practice by dbt is to use for each raw data table one seperate staging model SQL-file.
 
@@ -60,7 +60,7 @@ The staging folder contains the two YAML files sources and staging. The sources 
 
 The staging.yml file is similiar and contains the configuration for each staging-model file, with the name and also generic tests.
 
-Each staging models is organized with two CTEs. One for pulling the data from the specified sources (sources.yml) with the source() macro and one to process the transformation. In the exampe below we use the CTE source to pull the data from the source table payment of the previously defined source "src_brazil_ecommerce". Afterwards we transform the data in the CTE bec_payments to generate a surrogate key by concatenating two columns. The transformed data will be materialized as a view in Redshift.
+Each staging models is organized with two CTEs. One for pulling the data from the specified sources (sources.yml) with the source() macro and one to process the transformation. In the exampe below we use the CTE source to pull the data from the source table payment of the previously defined source "src_brazil_ecommerce". Afterwards we transform the data in the CTE bec_payments to generate a surrogate key by concatenating two columns. The transformed data will be materialized as a view in Redshift. The materialization of the models can be specified for each model layer in the dbt_project.yml file.
 
 ```
 with source as (
@@ -85,35 +85,128 @@ bec_payments as (
 select * from bec_payments
 ```
 
-##### Staging 
-
 ### Intermediate 
+
+In the intermediate layer are SQL-files with more complex transformations then in the staging layer. The layer will be often used for transformations like pivoting, aggregation or joining. We have two intermediate modules in this project, which use the prefix "int" in their filenames. For example, the file bec_int_payments.sql pivot the different payments for one order and aggregates the grain of the different payments for each payment_type as well as the total amount per order.
+
+```
+{% set payment_methods = ['credit_card', 'voucher', 'not_defined', 'boleto', 'debit_card'] %}
+ 
+
+with payments as (
+
+   select * from {{ ref('bec_stg_payments') }}
+),
+
+aggregate_payments_to_order_grain as (
+
+    select
+        order_id,
+        {% for payment_method in payment_methods -%}
+            sum(
+                case
+                    when payment_type = '{{ payment_method }}' 
+                    then amount
+                    end
+            ) as {{ payment_method }}_amount,
+        {%- endfor %}
+
+        sum(amount) as order_total_amount
+    
+    from payments
+
+    group by order_id
+)
+
+select * from aggregate_payments_to_order_grain
+```
+
+The image below shows the difference between the tables created by the payments staging model (top) and the pivoted intermediate model (bottom)
+
+![int_payment](https://user-images.githubusercontent.com/63445819/222537089-ed279900-66e3-4dd8-aa39-a95ecf748b2d.png)
+
 
 ### Marts
 
+The data marts are the part where all comes together and they are the tables which will be accessed and analyzed by the business user with their BI-Tools like Power BI, Tableau or SQL Querys. The marts represents concepts or entities of the business, for example users, customers or stores, as well as business events like orders or payments.
+
+The marts can be organized as dimensional models (star schema) with dimensions and facts as well as multiple wide tables. The dimensional model is easy to understand commnly known and use less duplicated data than wide tables. For this project we will use the dimensional model approach, because we only use a small dataset and the focus is on education.
+
+But in the modern data warehousing where storage is cheap and compute is more expensive, it is a good approach to use wide tables. This is a denormalized approach, because there is one wide table for each entity/concept. The same data like customer_id will be stored in multiple wide tables which increase the storage. On the otherhand it is not necessary to use joins like in the star schema which reduce the compute costs. I will use wide tables in the football_analytics project.
+
+The data marts normaly contains joins of different tables and aggregations. There souldn´t be any complex business transformations in this layer. The data marts are materialized in Redshift as tables.
+
 #### Dimensions
-	- customer
-	- products
-	- sellers
-	- calendar
+
+Dimensions provides the describing informations around business process events. They tell you questions like:
+Who placed the order? What product was ordered? Where does the customer/seller lives. When was the order placed?
+This project has five different dimensions: customers, products, sellers, locations and calendar.
 
 #### Facts
-	- orders
-	- order_items
-	- payments
+
+Facts are the measurements that result from a business process event and are almost always numeric. This could be payment amount or the delivery time. We use four fact tables in this project. This tables also contain the keys from the dimension tables as foreign key to build the relationship between the tables.
+
+	- orders: Order amount, delivery status, different timestamps, delivery in time (y/n)
+	- order_items: Metrics for the different items of an order like the price or freight value.
+	- payments: amount for each payment sequencial, payment type.
+	- reviews: review score for a order, review date, answer date.
 	
+![data_model_powerbi](https://user-images.githubusercontent.com/63445819/222542732-ab50b884-2815-4f6a-9773-8e41954d409b.png)
+
+### dbt DAGs (directed acyclic graphs) / Lineage
+
+Dbt provides a view how the data moves through the organization/project. 
+>If you use a transformation tool such as dbt that automatically infers relationships between data sources and models, a DAG automatically populates to show you the lineage that exists for your data transformations. Your DAG is used to visually show upstream dependencies, the nodes that must come before a current model, and downstream relationships, the work that is impacted by the current model. DAGs are also directional—they show a defined flow of movement and form non-cyclical loops. Ultimately, DAGs are an effective way to see relationships between data sources, models, and dashboards.
+
+The following image shows the DAG of the dimension products. The dimension model joins two staging models.
+
+![dag_dim_products](https://user-images.githubusercontent.com/63445819/222547430-462be1f6-0fc1-447c-a6f3-45d3d32f909a.png)
+
 ### Seeds
 
+Seeds are CSV files in the dbt project (typically in your seeds directory), that dbt can load into the data warehouse. Seeds can be referenced in downstream models the same way as referencing other models by using the ref() function. Because these CSV files are located in the dbt repository, they are version controlled and code reviewable. Seeds are best suited to static data which changes infrequently.
+
+In this project we use dbt seeds for the time data of the calender dimension. As well as the models also the seeds folder contains a YAML file for the configuration of the seed files. The following code and image shows the staging model "bec_stg_calender" which references the calendarcsv file in the seeds folder instead of a table from Redshift.
+
+```
+with calendar as (
+
+    select 
+        *,
+        extract(year from date) as year_num,
+        concat(daynumofweek::varchar, dayname) as day_num_and_name
+    from {{ ref('calendar')}}
+)
+
+select * from calendar
+```
+![seed_lineage](https://user-images.githubusercontent.com/63445819/222594730-ea6e4897-fc58-4dd2-b090-d8ac1bdbe7fc.png)
+
+
 ### Tests
-- **Generic Tests**
-are written in YAML and return the number of records that do not meet your assertions. These are run on specific columns in a model. The standard package provides the generic tests: unique, not_null, accepted_values and relationships. The tests unique and not_null for example can be used to test primary keys.
+>- **Generic Tests** are written in YAML and return the number of records that do not meet your assertions. These are run on specific columns in a model. The standard package provides the generic tests: unique, not_null, accepted_values and relationships. The tests unique and not_null for example can be used to test primary keys.
 
+In this project we specified generic tests for the source data in Redhift as well as the staging model. For the staging model "bec_stg_orders" are unique and not null tests for the primary key specified. Also a relationship test for the values in the colmun customer_id is specified. This test checks if all values (foreign keys) in the column "customer_id" of the table "bec_stg_orders" also exists in the column in the origin table "bec_stg_customers".
 
-- **Singular Tests**
-are specific queries that you run against your models. These are run on the entire model. These types of tests are user defined tests for specific attributes that needs to be validatet. For example the total amount of an order can not be negative. These type of tests are not specified in the YML file, they are saved as a SQL file in the tests order of the dbt-project.
+```
+  - name: bec_stg_orders
+    columns:
+      - name: order_id
+        tests:
+        - unique
+        - not_null
+      - name: customer_id
+        tests:
+          - not_null
+          - relationships:
+              to: ref('bec_stg_customers')
+              field: customer_id
+```
 
+>- **Singular Tests** are specific queries that you run against your models. These are run on the entire model. These types of tests are user defined tests for specific attributes that needs to be validatet. For example the total amount of an order can not be negative. These type of tests are not specified in the YML file, they are saved as a SQL file in the tests order of the dbt-project.
 
-### Documentation
+Two singular tests are specified for this project. The code in "order_items_surrogate_keys.sql" creates a surrogate key by concatenating the order_id and oder_item_id and test if the created surrogate key is unique. The code in "paymount_amount_greater_0.sql" tests if the sum of payments for one order_id are greater then 0.
+
 
 ## Analytics & Visualization 
 
