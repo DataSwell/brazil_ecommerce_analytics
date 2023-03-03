@@ -225,8 +225,13 @@ There are 3 different dashboards with diferent visuals (diagrams, tables) to vis
 		- 2018: 1) health_beauty = 770k 2) watches_gift = 708k 3) bed_bath = 538k
 	- What are Count, SUM, AVG, MIN, MAX per product group?
 	- In which months are most products bought? 
+		- In 2017 there is a constant increasing of the sales volume during the year with a peak in November with 16.43%
+		- In 2018 the percentage of the sales volume is quiet consistent between 11.4 and 13.5%.
 	- Is there a difference during the years?
+		- From 2017 to 2018 total sales volume increase by 1.23mil real which is around 20%. 
+		- The top 3 product categories are the same but the order changed.
 	- Are products with more pictures ordered more often than others from the same category?
+		- The amount of product photos doesn`t look like a reason for higher sales numbers. The highest share of sales is by products that only had 1 prodct photo.
 
 ![oilst_product_data_dasboard](https://user-images.githubusercontent.com/63445819/222719139-99d4eca8-3af5-4693-9b76-aebffd52a7d3.png)
 
