@@ -236,8 +236,10 @@ There are 3 different dashboards with diferent visuals (diagrams, tables) to vis
 ![oilst_product_data_dasboard](https://user-images.githubusercontent.com/63445819/222719139-99d4eca8-3af5-4693-9b76-aebffd52a7d3.png)
 
 - **customer / sellers / reviews:**
-	- Where live the customers with the most value of orders?
-		- 
+	- What bought the top 3 customers?
+		- The best customer bought 8 items of teh category fixed_telephony with an average price of 1680 brazil real. The product categorie is with only 58k sales volume very small.
+		- The 2nd best customer bought as well all his items from the category fixed_telephony. The average price was 1790 brazil real.
+		- The 3rd best customer only bought one item from the category housewares for 6735 brazil real.
 	- Where are the top-selling companies located
 		- 4 of the 5 top seller are located in the state Sao Paulo. The 2nd best seller is located in the state Bahia.
 	- Which products do the top-selling companies sell? (In the image below the 2nd best seller is selected)
@@ -245,17 +247,27 @@ There are 3 different dashboards with diferent visuals (diagrams, tables) to vis
 		- 2) The main business are computers, in this category he holds 75% of the total sales volume. Also around 75% of his total earnings are based on selling computers. He sold 410 items with an average price of 543,36. Compared to the number one seller, he sold less items, but computers have a higher average price then watches.
 		- 3) 82.5% of his sales volume are made with bed & bath articels. In this category he holds around 16% of the total sales volume. The avergae price with 100.92 is lower then computers and watches but he sold nearly 2000 items.
 
-![oilst_customer_seller_data_dasboard](https://user-images.githubusercontent.com/63445819/222739413-e6d65516-221e-48b1-9709-bace7358ff82.png)
+![oilst_customer_seller_data_dasboard](https://user-images.githubusercontent.com/63445819/222740249-295fa41e-3de1-46da-a812-207fe07c97f1.png)
 
 - **orders / payment:**
 	- How many orders were delivered in time?
-	- Are specific prduct categories delayed with a higher percentage?
-	- What type of payment is used most?
+		- All time: 92.1% of the orders were delivered in time (bevor the estimated time)
+		- 2017: 92.4% of the orders were delivered in time.
+		- 2018: 91.7% of teh orders were delivered in time.
+	- What type of payment is used most (all time)?
+		- Number of payments per type: 74% credit card, 19% boleto, 5,5% voucher.
+		- Payed amount per type: 78,5% credit card, 18% boleto, 2,2% voucher.
 	- At what days are the most orders placed?
-	- What percentage of orders get canceled?
+		- The most orders are placed on mondays with 16.27%. The lowest percentage is on saturdays with 10.96%.
 	- What is the distribution of the the review rating?
+		- 5 stars: 58.38% 
+		- 4 stars: 19.48%
+		- 3 stars: 8.26%
+		- 2 stars: 3.13%
+		- 1 stars: 10.75% nearly the half of the 1 star orders were not delivered in time, what could be the reason for the bad rating.
 	- What percentage of orders get reviewed?
-	- What percentage of reviews gets answered?
+		- Of 98207 total orders were 98018 orders reviewed by customers, which is approx 99.8%
 
-![oilst_order_and_payment_data_dasboard](https://user-images.githubusercontent.com/63445819/222457184-3f86e1c2-7644-44d2-87b7-a5cd96e7e918.png)
-	
+![oilst_order_and_payment_data_dasboard](https://user-images.githubusercontent.com/63445819/222749274-11537431-cfc4-4c12-95b9-1afd2e014756.png)
+
+
