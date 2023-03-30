@@ -268,6 +268,6 @@ There are 3 different dashboards with diferent visuals (diagrams, tables) to vis
 	- What percentage of orders get reviewed?
 		- Of 98207 total orders were 98018 orders reviewed by customers, which is approx 99.8%
 
-![oilst_order_and_payment_data_dasboard](https://user-images.githubusercontent.com/63445819/222749274-11537431-cfc4-4c12-95b9-1afd2e014756.png)
+![oilst_order_and_payment_data_dasboard](https://user-images.githubusercontent.com/63445819/222749274-11537431-cfc4-4c12-95b9-1afd2e014756.png) 
 
 
